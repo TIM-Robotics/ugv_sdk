@@ -343,12 +343,12 @@ typedef struct {
   uint8_t reserved6;
 } VersionRequestFrame;
 
-//typedef struct {
-//  struct16_t controller_hw_version;
-//  struct16_t motor_driver_hw_version;
-//  struct16_t controller_sw_version;
-//  struct16_t motor_driver_sw_version;
-//} VersionResponseFrame;
+// typedef struct {
+//   struct16_t controller_hw_version;
+//   struct16_t motor_driver_hw_version;
+//   struct16_t controller_sw_version;
+//   struct16_t motor_driver_sw_version;
+// } VersionResponseFrame;
 
 typedef struct {
   uint8_t res0;
@@ -360,7 +360,6 @@ typedef struct {
   uint8_t res6;
   uint8_t res7;
 } VersionResponseFrame;
-
 
 typedef struct {
   uint8_t mode;
@@ -408,13 +407,6 @@ typedef struct {
 
 typedef struct {
   uint8_t error_clear_byte;
-  uint8_t reserved0;
-  uint8_t reserved1;
-  uint8_t reserved2;
-  uint8_t reserved3;
-  uint8_t reserved4;
-  uint8_t reserved5;
-  uint8_t reserved6;
 } StateResetConfigFrame;
 
 typedef struct {

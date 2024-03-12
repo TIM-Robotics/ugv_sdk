@@ -666,9 +666,8 @@ bool EncodeCanFrameV2(const AgxMessage *msg, struct can_frame *tx_frame) {
     }
     case AgxMsgStateResetConfig: {
       tx_frame->can_id = CAN_MSG_STATE_RESET_CONFIG_ID;
-      tx_frame->can_dlc = 8;
+      tx_frame->can_dlc = 1;
       StateResetConfigFrame frame;
-      // TODO
       memcpy(tx_frame->data, (uint8_t *)(&frame), tx_frame->can_dlc);
       break;
     }

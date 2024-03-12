@@ -73,7 +73,7 @@ class TracerBaseV2 : public AgilexBase<ProtocolV2Parser>,
   }
 
   void ResetRobotState() override {
-    // TODO
+    AgilexBase<ProtocolV2Parser>::ResetRobotState();
   }
 };
 }  // namespace westonrobot

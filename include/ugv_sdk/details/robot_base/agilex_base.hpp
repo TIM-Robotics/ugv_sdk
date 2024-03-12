@@ -167,7 +167,17 @@ class AgilexBase : public RobotCommonInterface {
     }
   }
 
-  void ResetRobotState() override {}
+  void ResetRobotState() override {
+    if (can_ != nullptr && can_->IsOpened()) {
+      AgxMessage msg;
+      msg.type = AgxMsgStateResetConfig;
+      msg.body.state_reset_config_msg.error_clear_byte = 0;
+
+      // send to can bus
+      can_frame frame;
+      if (parser_.EncodeMessage(&msg, &frame)) can_->SendFrame(frame);
+    }
+  }
 
   ProtocolVersion GetParserProtocolVersion() override {
     return parser_.GetParserProtocolVersion();
@@ -388,8 +398,8 @@ class AgilexBase : public RobotCommonInterface {
         break;
       }
       case AgxMsgBmsExtended: {
-        common_sensor_state_msgs_.bms_extend_state = 
-          status_msg.body.bms_extended_msg;
+        common_sensor_state_msgs_.bms_extend_state =
+            status_msg.body.bms_extended_msg;
       }
       default:
         break;
