@@ -325,7 +325,7 @@ class AgilexBase : public RobotCommonInterface {
 
   void UpdateActuatorState(const AgxMessage &status_msg) {
     std::lock_guard<std::mutex> guard(actuator_state_mtx_);
-    actuator_state_msgs_.time_stamp = SdkClock::now();
+    // actuator_state_msgs_.time_stamp = SdkClock::now();
     switch (status_msg.type) {
       case AgxMsgMotorAngle: {
         actuator_state_msgs_.motor_angles.angle_5 =
@@ -351,6 +351,7 @@ class AgilexBase : public RobotCommonInterface {
       }
       case AgxMsgActuatorHSState: {
         // std::cout << "actuator hs feedback received" << std::endl;
+        actuator_state_msgs_.time_stamp = SdkClock::now();
         actuator_state_msgs_
             .actuator_hs_state[status_msg.body.actuator_hs_state_msg.motor_id] =
             status_msg.body.actuator_hs_state_msg;
